@@ -15,36 +15,31 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.          //
 ///////////////////////////////////////////////////////////////////////////////////
 
-#ifndef INCLUDE_FMPREEMPHASISTDIALOG_H
-#define INCLUDE_FMPREEMPHASISTDIALOG_H
+#ifndef INCLUDE_PACKETMODBPFDIALOG_H
+#define INCLUDE_PACKETMODBPFDIALOG_H
 
 #include <QDialog>
 
-#include "export.h"
-
 namespace Ui {
-    class FMPreemphasisDialog;
+    class PacketModBPFDialog;
 }
 
-class SDRGUI_API FMPreemphasisDialog : public QDialog {
+class PacketModBPFDialog : public QDialog {
     Q_OBJECT
 
 public:
-    explicit FMPreemphasisDialog(float tau, float highFreq, QWidget* parent = 0);
-    ~FMPreemphasisDialog();
-    void updateCombo();
-    
-    float m_tau;
+    explicit PacketModBPFDialog(float lowFreq, float highFreq, int taps, QWidget* parent = 0);
+    ~PacketModBPFDialog();
+
+    float m_lowFreq;
     float m_highFreq;
+    int m_taps;
 
 private slots:
     void accept();
-    void on_tau_valueChanged(double value);
-    void on_lowFreq_valueChanged(double value);
-    void on_preset_currentIndexChanged(int value);
 
 private:
-    Ui::FMPreemphasisDialog* ui;
+    Ui::PacketModBPFDialog* ui;
 };
 
-#endif // INCLUDE_FMPREEMPHASISTDIALOG_H
+#endif // INCLUDE_PACKETMODBPFDIALOG_H

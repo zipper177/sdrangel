@@ -15,36 +15,26 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.          //
 ///////////////////////////////////////////////////////////////////////////////////
 
-#ifndef INCLUDE_FMPREEMPHASISTDIALOG_H
-#define INCLUDE_FMPREEMPHASISTDIALOG_H
+#ifndef INCLUDE_POPCOUNT_H
+#define INCLUDE_POPCOUNT_H
 
-#include <QDialog>
-
-#include "export.h"
-
-namespace Ui {
-    class FMPreemphasisDialog;
+// Population count - count number of bits
+#if defined(__cplusplus) && (__cplusplus >= 202002L)
+#include <bit>
+#define popcount std::popcount
+#elif defined (__GNUC__)
+#define popcount __builtin_popcount
+#elif defined(_MSC_VER)
+#include <intrin.h>
+#define popcount __popcnt
+#else
+static int popcount(int in)
+{
+    int cnt = 0;
+    for(int i = 0; i < 32; i++)
+        cnt += (in >> i) & 1;
+    return cnt;
 }
+#endif
 
-class SDRGUI_API FMPreemphasisDialog : public QDialog {
-    Q_OBJECT
-
-public:
-    explicit FMPreemphasisDialog(float tau, float highFreq, QWidget* parent = 0);
-    ~FMPreemphasisDialog();
-    void updateCombo();
-    
-    float m_tau;
-    float m_highFreq;
-
-private slots:
-    void accept();
-    void on_tau_valueChanged(double value);
-    void on_lowFreq_valueChanged(double value);
-    void on_preset_currentIndexChanged(int value);
-
-private:
-    Ui::FMPreemphasisDialog* ui;
-};
-
-#endif // INCLUDE_FMPREEMPHASISTDIALOG_H
+#endif /* INCLUDE_POPCOUNT_H */

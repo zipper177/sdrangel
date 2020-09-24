@@ -25,8 +25,10 @@ class PacketModTXSettingsDialog : public QDialog {
 
 public:
     explicit PacketModTXSettingsDialog(int rampUpBits, int rampDownBits, int rampRange,
-                        bool modulateWhileRamping,
+                        bool modulateWhileRamping, int modulation, int baud,
                         int markFrequency, int spaceFrequency,
+                        bool pulseShaping, float beta, int symbolSpan,
+                        bool scramble, int polynomial,
                         int ax25PreFlags, int ax25PostFlags,
                         int ax25Control, int ax25PID,
                         int lpfTaps, bool bbNoise, bool rfNoise, bool writeToFile,
@@ -37,8 +39,15 @@ public:
    int m_rampDownBits;
    int m_rampRange;
    bool m_modulateWhileRamping;
+   int m_modulation;
+   int m_baud;
    int m_markFrequency;
    int m_spaceFrequency;
+   bool m_pulseShaping;
+   float m_beta;
+   int m_symbolSpan;
+   bool m_scramble;
+   int m_polynomial;
    int m_ax25PreFlags;
    int m_ax25PostFlags;
    int m_ax25Control;

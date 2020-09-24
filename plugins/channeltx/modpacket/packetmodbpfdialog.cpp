@@ -15,36 +15,31 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.          //
 ///////////////////////////////////////////////////////////////////////////////////
 
-#ifndef INCLUDE_FMPREEMPHASISTDIALOG_H
-#define INCLUDE_FMPREEMPHASISTDIALOG_H
+#define _USE_MATH_DEFINES
+#include <cmath>
+#include "packetmodbpfdialog.h"
+#include "ui_packetmodbpfdialog.h"
 
-#include <QDialog>
-
-#include "export.h"
-
-namespace Ui {
-    class FMPreemphasisDialog;
+PacketModBPFDialog::PacketModBPFDialog(float lowFreq, float highFreq, int taps, QWidget* parent) :
+    QDialog(parent),
+    ui(new Ui::PacketModBPFDialog)
+{
+    ui->setupUi(this);
+    ui->lowFreq->setValue(lowFreq);
+    ui->highFreq->setValue(highFreq);
+    ui->taps->setValue(taps);
 }
 
-class SDRGUI_API FMPreemphasisDialog : public QDialog {
-    Q_OBJECT
+PacketModBPFDialog::~PacketModBPFDialog()
+{
+    delete ui;
+}
 
-public:
-    explicit FMPreemphasisDialog(float tau, float highFreq, QWidget* parent = 0);
-    ~FMPreemphasisDialog();
-    void updateCombo();
-    
-    float m_tau;
-    float m_highFreq;
+void PacketModBPFDialog::accept()
+{
+    m_lowFreq = ui->lowFreq->value();
+    m_highFreq = ui->highFreq->value();
+    m_taps = ui->taps->value();
 
-private slots:
-    void accept();
-    void on_tau_valueChanged(double value);
-    void on_lowFreq_valueChanged(double value);
-    void on_preset_currentIndexChanged(int value);
-
-private:
-    Ui::FMPreemphasisDialog* ui;
-};
-
-#endif // INCLUDE_FMPREEMPHASISTDIALOG_H
+    QDialog::accept();
+}
