@@ -261,6 +261,8 @@ elseif (WIN32)
     "${EXTERNAL_LIBRARY_FOLDER}/fftw-3"
     "${EXTERNAL_LIBRARY_FOLDER}/libusb/MS64/dll"
     "${EXTERNAL_LIBRARY_FOLDER}/ffmpeg/bin"
+    "${EXTERNAL_LIBRARY_FOLDER}/codec2/lib"
+    "${EXTERNAL_LIBRARY_FOLDER}/uhd/bin"
   )
 endif()
 
