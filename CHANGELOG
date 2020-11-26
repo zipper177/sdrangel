@@ -1,3 +1,13 @@
+sdrangel (6.2.0-1) unstable; urgency=medium
+
+   * New VOR demodulator plugin. PR #723
+   * Compiler flags and architecture detection rework. PR #714 and #715
+   * Fixes for build with clang-cl. PR #717
+   * SSB modulator: fixed audio compressor. Fixes #719
+   * Fixed narrowing error or warning when Rx sample size is 16 bits
+
+  -- Edouard Griffiths, F4EXB <f4exb06@gmail.com>  Thu, 26 Nov 2020 05:49:14 +0100
+
 sdrangel (6.1.0-1) unstable; urgency=medium
 
    * Fixes for clang-cl build and LTO optimization. PR #717
